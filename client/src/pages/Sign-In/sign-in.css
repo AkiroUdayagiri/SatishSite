@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Montserrat&family=Roboto&family=Roboto+Slab&display=swap');
+
+/* Background */
+
+.sign-in {
+    background-image: url("../../assets/imgs/sign-in.jpg");
+    height: 100vh;
+}
+
+.sign-in-area {
+    background-color: #ffffff;
+    height: 100%;
+    width: 500px;
+    border-right: 3px solid #000000
+}
+
+
+/* End Background */
+
+
+
+/* Strike-or */
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.strike > span {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 2px;
+    background: #bebebe;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+/* End Strike-or */
+
+/* Login Area */
+
+.company-name{
+    padding-top: 10%;
+    margin-left: 5%;
+    text-align: left;
+    font-size: 200%;
+    font-family: "Roboto Slab", serif;
+}
+
+.login-text {
+    padding-top: 8%;
+    margin-left: 5%;
+    text-align: left;
+    font-family: "Roboto Slab", serif;
+}
+
+form {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.small-text {
+    text-decoration: none;
+    font-family: "Alata", sans-serif;
+}
+
+.google-button {
+    font-family: "Roboto", sans-serif;
+    border: 1px solid #c5c5c5;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.facebook-button {
+    color: white;
+    font-family: "Roboto", sans-serif;
+    border: 1px solid #c5c5c5;
+    background-color: #4267B2;
+    border-radius: 25px;
+}
+
+
+/* End Login Area */
