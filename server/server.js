@@ -14,12 +14,12 @@ mongoose.connect("mongodb://localhost:27017/todolistDB", {
   useNewUrlParser: true,
 });
 
+//API Routes
+
 //Home Route
-app.get("/", function (req, res) {
+app.route("/").get((req, res) => {
   res.send("Welcome to the Homepage");
 });
-
-//API Routes
 
 // Start Server
 app.listen(5000, function () {
