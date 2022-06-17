@@ -6,38 +6,37 @@ import {
   VictoryTheme,
 } from "victory";
 import Nav from "../Nav";
+import { useState } from "react";
 
 function Plurality() {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const [data, setData] = useState([]);
 
-  const data = [
-    { x: new Date(1982, 1, 1), y: 125 },
-    { x: new Date(1987, 1, 1), y: 257 },
-    { x: new Date(1993, 1, 1), y: 345 },
-    { x: new Date(1997, 1, 1), y: 515 },
-    { x: new Date(2001, 1, 1), y: 132 },
-    { x: new Date(2005, 1, 1), y: 305 },
-  ];
+  function getData() {
+    fetch(
+      `/api/plurality/${encodeURIComponent(`${"Auto/Truck-Tires & Misc"}`)}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setData(() => {
+          return data.data.map((item) => {
+            return {
+              x: new Date(item.x),
+              y: item.y,
+            };
+          });
+        });
+      });
+  }
+
+  getData();
+
   const VictoryZoomCursorContainer = createContainer("zoom", "cursor");
   return (
     <div className="App">
       <Nav />
       <div className="chart">
         <VictoryChart
-          width={600}
+          width={700}
           height={300}
           theme={VictoryTheme.material}
           containerComponent={
@@ -46,9 +45,10 @@ function Plurality() {
               allowPan={true}
               zoomDimension="x"
               cursorLabel={({ datum }) =>
-                `Date: ${`${
-                  months[datum.x.getMonth()]
-                } ${datum.x.getDate()}`}, Price: ${Math.round(datum.y)}`
+                `Date: ${`${`${datum.x}`
+                  .split(" ")
+                  .slice(0, 3)
+                  .join(" ")} `}, Price: ${Math.round(datum.y)}`
               }
             />
           }

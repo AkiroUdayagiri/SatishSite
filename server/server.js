@@ -26,6 +26,20 @@ const pool = new Pool({
 //API Routes
 
 app.route("/api/plurality/:industry").get(function (req, res) {
+  const months = {
+    Jan: "0",
+    Feb: "1",
+    Mar: "2",
+    Apr: "3",
+    May: "4",
+    Jun: "5",
+    Jul: "6",
+    Aug: "7",
+    Sep: "8",
+    Oct: "9",
+    Nov: "10",
+    Dec: "11",
+  };
   pool.query(
     `SELECT date, industry, avgrs FROM rs_industry_groups_plurality_history WHERE industry='${req.params.industry}'`,
     (error, results) => {
@@ -33,11 +47,7 @@ app.route("/api/plurality/:industry").get(function (req, res) {
         console.error(error);
       }
       let data = results.rows.map((row) => {
-        const date = [
-          parseInt(_.split(row.date, "-")[0].substring(11, 15)),
-          _.split(row.date, "-")[0].substring(4, 7),
-          parseInt(_.split(row.date, "-")[0].substring(8, 10)),
-        ];
+        const date = _.split(row.date, ".", 1);
         return {
           x: date,
           y: row.avgrs,
