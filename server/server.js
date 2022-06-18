@@ -47,7 +47,7 @@ app.route("/api/plurality/:industry").get(function (req, res) {
         console.error(error);
       }
       let data = results.rows.map((row) => {
-        const date = _.split(row.date, ".", 1);
+        const date = _.split(row.date, ".", 1)[0];
         return {
           x: date,
           y: row.avgrs,
